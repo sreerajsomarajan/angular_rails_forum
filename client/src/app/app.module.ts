@@ -5,21 +5,31 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
-// Components
-import { AppComponent }  from './app.component';
-import { PostsComponent } from './posts/posts.component'
+import { AuthGuard } from './shared/auth.guard';
 
 // Routing
 import { appRouting } from './app.routing';
-import { NavbarComponent } from './navbar/navbar.component';
 
+// Services
+import {
+  AuthenticationService,
+  PostsService
+} from './services/index';
+
+// Components
+import {
+  AppComponent,
+  PostsComponent,
+  NavbarComponent,
+  LoginComponent
+} from './components/index';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +37,11 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpModule,
     appRouting
   ],
-  // providers: [AUTH_PROVIDERS, BookService],
-  providers: [Title],
+  providers: [
+    Title,
+    AuthGuard,
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
