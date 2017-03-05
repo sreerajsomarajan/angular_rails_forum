@@ -1,13 +1,16 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { PostsComponent } from './posts/posts.component'
-import { LoginComponent } from './login/login.component';
+import {
+  PostsComponent,
+  LoginComponent,
+  RegisterComponent
+} from './components/index'
 import { AuthGuard } from './shared/auth.guard';
 
 export const appRouting = RouterModule.forRoot([
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
-  { path: 'posts', component: PostsComponent },
+  { path: 'posts', component: PostsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '', component: PostsComponent, canActivate: [AuthGuard] },
+  { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: 'posts' }
 ]);

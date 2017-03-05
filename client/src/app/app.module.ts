@@ -13,7 +13,9 @@ import { appRouting } from './app.routing';
 // Services
 import {
   AuthenticationService,
-  PostsService
+  AlertService,
+  PostsService,
+  UserService
 } from './services/index';
 
 // Components
@@ -21,7 +23,10 @@ import {
   AppComponent,
   PostsComponent,
   NavbarComponent,
-  LoginComponent
+  LoginComponent,
+  RegisterComponent,
+  AlertComponent,
+  UserComponent
 } from './components/index';
 
 @NgModule({
@@ -29,7 +34,10 @@ import {
     AppComponent,
     PostsComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    UserComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +48,9 @@ import {
   providers: [
     Title,
     AuthGuard,
-    AuthenticationService
+    AuthenticationService,
+    AlertService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

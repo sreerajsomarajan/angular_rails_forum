@@ -25,20 +25,31 @@ export class AuthenticationService {
                       throw new Error('This request has failed ' + response.status);
                     }
                     else {
-                      let authToken = response.json() && response.json().authentication_token;
+                      let resp = response.json()
+                      let authToken = resp && resp.authentication_token;
                       if (authToken) {
                           this.authToken = authToken;
-                          let user = JSON.stringify({ email: email, authToken: authToken });
+                          let user = JSON.stringify(
+                            {
+                              id: resp.id,
+                              email: resp.email,
+                              firstName: resp.first_name,
+                              lastName: resp.last_name,
+                              authToken: authToken
+                            }
+                          );
                           localStorage.setItem('currentUser', user);
+                          localStorage.setItem('isLoggedIn', 'true');
                       }
                       return response.json();
                     }
                   });
     }
 
-    logout(): void {
+    logout() {
         // clear authToken remove user from local storage to log user out
         this.authToken = null;
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('isLoggedIn');
     }
 }

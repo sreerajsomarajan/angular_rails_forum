@@ -21,6 +21,8 @@
         </table>
     </div>
 </div> -->
+<p>Hi {{currentUser.email}}</p>
+<p><a [routerLink]="['/login']">Logout</a></p>
 <form (ngSubmit)="addPost()">
     <label for="title">Title</label>
     <input type="text" [(ngModel)]="newPost.title" name="title" id="title" required>
@@ -28,27 +30,6 @@
     <input type="text" [(ngModel)]="newPost.description" name="description" id="description" required>
     <button type="submit">Submit</button>
 </form>
-<!-- <div class="blog_posts-item">
-    <article class="post is-excerpt post_excerpt media" *ngFor="let post of posts; let i = index">
-        <div class="post-row post_excerpt_cover-wrapper">
-            <a class="post_cover is-excerpt post_excerpt_cover" href="/finance/valuation/snap-all-about-the-arpu-dummy">
-                <img src="https://uploads.toptal.io/blog/cover_image/120283/list_top_cover-0227toby.cover_cover-wide_blue-676d16439dd150549c09cd049b7d4acb.jpg" class="post_cover-image"><span class="post_excerpt_cover-content"><span class="post_avatar"><img class="post_avatar-image" src="https://uploads.toptal.io/user/photo/439380/small_01584ad99c2f3c230a714048445d60b9.jpg" width="50"></span><span class="post_cover-info"></span></span><span class="post_excerpt_cover-triangle"></span></a>
-        </div>
-        <div class="post-row has-padding has-no_bottom_padding">
-            <div class="post-title"><a href="/finance/valuation/snap-all-about-the-arpu-dummy">{{ post.title }}</a></div>
-            <div class="post_meta">
-                <div class="post_meta-author">
-                    <p>by <strong><a class="link is-blue" target="_blank" href="https://www.toptal.com/finance/resume/joe-matta">Joe Matta</a></strong> - Finance Expert @ <a class="link is-blue" target="_blank" href="https://www.toptal.com/">Toptal</a></p>
-                </div>
-            </div>
-        </div>
-        <article class="post_excerpt_content">
-            <div class="content_body is-small">
-                <p>{{ post.description }}</p>
-                <a class="post-continue" href="/finance/valuation/snap-all-about-the-arpu-dummy">Continue reading →</a></div>
-        </article>
-    </article>
-</div> -->
 <section class="grid-row has-top_border is-transparent" data-view="" id="main_content">
     <div class="grid-row-inner has-medium_padding two_columns_layout is-wide">
         <div class="two_columns_layout-content">
@@ -80,46 +61,3 @@
         </div>
     </div>
 </section>
-
-
-
-<div class="modal-content">
-    <header class="modal-row">
-        <div class="modal-row-inner has-big_padding">
-            <div class="modal-content-header-wrapper is-login">
-                <h1 class="modal-content-header">Login</h1>
-                <div class="modal-content-header-login_secured">
-                    <div class="modal-content-header-login_secured-icon"></div>Secured connection</div>
-            </div>
-        </div>
-    </header>
-    <form class="simple_form form" data-view="form#form" data-use-cookie-csrf="true" id="new_user" data-entity="user" data-modifier="[]" novalidate="novalidate" action="/users/login" accept-charset="UTF-8" method="post">
-        <input name="utf8" type="hidden" value="✓">
-        <input type="hidden" name="authenticity_token" value="M+9DgyPodORCngRKjhM/m4FhOqgvjrXe3m61POMV8nI5p6ao8NCJu4cSnlwr9nok1BxsYtikRPAUOYq3Zke1HQ==">
-        <article class="modal-row has-top_border">
-            <div class="modal-row-inner has-big_padding">
-                <fieldset class="form-fieldset">
-                    <div class="ui-textbox form-field js-field_wrapper email optional user_email">
-                        <input size="30" class="string email optional input" autofocus="autofocus" maxlength="255" minlength="255" placeholder="Email" type="email" value="" name="user[email]" id="user_email">
-                    </div>
-                    <div class="ui-textbox form-field js-field_wrapper password optional user_password">
-                        <input size="30" class="password optional input" maxlength="128" minlength="6" placeholder="Password" type="password" name="user[password]" id="user_password">
-                    </div>
-                </fieldset>
-                <div class="form-fieldset has-space_between is-vertically_centered no_flexbox-login_checkbox_and_link">
-                    <div class="no_flexbox-login_checkbox">
-                        <div class="ui-checkbox form-field js-field_wrapper boolean optional user_remember_me">
-                            <input value="0" type="hidden" name="user[remember_me]">
-                            <label class="boolean optional control-label checkbox" for="user_remember_me">
-                                <input class="boolean optional input" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me"><span class="label_wrap">Remember me</span></label>
-                        </div>
-                    </div><a class="login-forgot_link no_flexbox-login_link" href="/password/new">Lost password?</a></div>
-            </div>
-        </article>
-        <footer class="modal-row has-top_border">
-            <div class="modal-row-inner has-big_padding form-actions">
-                <input type="submit" name="commit" value="Login" class="button is-green_candy is-medium is-full_width" id="save_new_user">
-            </div>
-        </footer>
-    </form>
-</div>

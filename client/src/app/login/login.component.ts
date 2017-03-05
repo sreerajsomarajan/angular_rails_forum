@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../shared/authentication.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import {
+  AuthenticationService,
+  AlertService
+} from '../services/index';
+
 
 @Component({
   selector: 'app-login',
@@ -11,15 +15,21 @@ import { AuthenticationService } from '../shared/authentication.service';
 export class LoginComponent implements OnInit {
     user: any = {};
     loading = false;
-    error = '';
-    currentUser = {};
+    returnUrl: string;
 
-    constructor(private router: Router, private authenticationService: AuthenticationService) { }
+    constructor(
+      private route: ActivatedRoute,
+      private router: Router,
+      private authenticationService: AuthenticationService,
+      private alertService: AlertService
+    ) { }
 
     ngOnInit() {
       // reset login status
-      this.currentUser = null;
       this.authenticationService.logout();
+
+      // get return url from route parameters or default to '/'
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     login() {
@@ -28,12 +38,10 @@ export class LoginComponent implements OnInit {
           .login(this.user.email, this.user.password)
           .subscribe(
             response => {
-              this.currentUser = response;
-              this.router.navigate(['/']);
+              this.router.navigate([this.returnUrl]);
             },
             error => {
-              console.log('Error!!!');
-              this.error = 'Email or password is incorrect';
+              this.alertService.error(error);
               this.loading = false;
             }
           );

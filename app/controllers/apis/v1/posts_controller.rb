@@ -9,7 +9,7 @@ module Apis
       # acts_as_token_authentication_handler_for User, except: [:index, :create]
       # Method to render posts
       def index
-        render json: MainPost.all
+        render json: MainPost.all.order(created_at: :desc)
       end
 
       # Method to create a post.
@@ -18,7 +18,7 @@ module Apis
         msg = if post.save
                 'Post has successfully created.'
               else
-                set_error(:unprocessable_entity)
+                set_error(:unprocessable_entity, post)
               end
         common_response(msg, post: post)
       end
