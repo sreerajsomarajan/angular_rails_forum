@@ -5,8 +5,4 @@
 
 export const environment = {
   production: false,
-  auth0: {
-    clientID: 'uOI0y1sg9RtpvCVjPvvUMYWVNJqETjfk',
-    domain: 'devsree.auth0.com'
-  }
 };
